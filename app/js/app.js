@@ -38,4 +38,13 @@ angular.module('beacon', [
     .otherwise({
         redirectTo: '/share'
     });
+}])
+
+// Initialize the beacon module
+.run(['$rootScope', '$location', function ($rootScope, $location) {
+
+    'use strict';
+
+    // Provide the current location to all scopes
+    $rootScope.$location = $location;
 }]);
