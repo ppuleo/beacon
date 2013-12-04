@@ -1,7 +1,10 @@
-'use strict';
-
-// Declare the map module
+/**
+ * Callback function that bootstraps the angular app when the google maps api is loaded
+ * @return {undefined} nothing returned
+ */
 function onGoogleReady() {
+
+    'use strict';
 
     // Wait for the google maps api to load, then bootstrap our flare app.
     angular.bootstrap($('html'), ['beacon']);
@@ -18,8 +21,21 @@ angular.module('beacon', [
     'ngTouch'
 ])
 
+// Configure the beacon module
 .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/share', {templateUrl: 'partials/share.html', controller: 'ShareCtrl'});
-    $routeProvider.when('/view', {templateUrl: 'partials/view.html', controller: 'ViewCtrl'});
-    $routeProvider.otherwise({redirectTo: '/share'});
+
+    'use strict';
+
+    $routeProvider
+    .when('/share', {
+        templateUrl: 'partials/share.html',
+        controller: 'ShareCtrl'
+    })
+    .when('/view', {
+        templateUrl: 'partials/view.html',
+        controller: 'ViewCtrl'
+    })
+    .otherwise({
+        redirectTo: '/share'
+    });
 }]);
