@@ -1,0 +1,8 @@
+{
+  "name": "beacon",
+  "description": "A location sharing test project in AngularJS",
+  "repository": "https://github.com/ppuleo/beacon.git",
+  "devDependencies": {
+
+  }
+}
