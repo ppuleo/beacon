@@ -33,7 +33,7 @@ angular.module('beacon', [
     })
     .when('/view', {
         templateUrl: 'partials/view.html',
-        controller: 'ViewCtrl'
+        controller: 'FindCtrl'
     })
     .otherwise({
         redirectTo: '/share'

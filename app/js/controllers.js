@@ -130,6 +130,13 @@ angular.module('beacon.controllers', [])
 
 }])
 
-.controller('ViewCtrl', [function () {
+/**
+ * Controller for the Find view
+ * @param  {object} $scope      Angular $scope
+ * @param  {object} geolocation The beacon custom geolocation service
+ * @param  {object} beaconState The beacon custom state service
+ * @return {object} beacon.controllers Returns the beacon.controllers module for chaining
+ */
+.controller('FindCtrl', [function () {
 
 }]);
