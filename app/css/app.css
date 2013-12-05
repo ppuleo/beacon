@@ -69,8 +69,33 @@ section {
     perspective: 1000;
 }
 
-/* Map Canvas */
+/* Share Page */
+.share-container {
+  height: 100%;
+  width: 100%;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+}
+
+.share-container.visible {
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.share-container input {
+  position: absolute;
+  top: 5rem;
+}
+
+/* Map */
 .map-canvas {
   height: 100%;
   width: 100%;
+}
+
+/* Buttons */
+.button-container {
+  position: absolute;
+  bottom: 5rem;
+  left: 0;
 }
