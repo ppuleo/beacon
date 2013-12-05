@@ -10,7 +10,7 @@
     </div>
 
     <!-- Name input box -->
-    <input type="text" ng-model="user.name" />
+    <input type="text" ng-model="user.name" ng-change="updateUrl(user.name)" />
 
     <!-- Action Button -->
     <div class="button-container">

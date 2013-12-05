@@ -47,9 +47,7 @@ angular.module('beacon.services', [])
             if (!latitude || !longitude) {
 
                 // Resolve the promise
-                deferred.resolve({
-                    latitude: null,
-                    longitude: null,
+                deferred.reject({
                     message: {
                         type: 'error',
                         title: 'Location Error',
@@ -76,9 +74,7 @@ angular.module('beacon.services', [])
         function geoErrorHandler(error) {
 
             // Resolve the promise
-            deferred.resolve({
-                latitude: null,
-                longitude: null,
+            deferred.reject({
                 message: {
                     type: 'error',
                     title: 'Location Error',
@@ -104,9 +100,7 @@ angular.module('beacon.services', [])
         else { // If navigator.geolocation is falsy, there's no HTML5 geolocation support.
 
             // Resolve the promise
-            deferred.resolve({
-                latitude: null,
-                longitude: null,
+            deferred.reject({
                 message: {
                     type: 'alert',
                     title: 'Location Unknown',
@@ -148,8 +142,8 @@ angular.module('beacon.services', [])
         map: {
             isVisible: false,
             isLoaded: false,
+            center: new google.maps.LatLng(37.776098, -122.4233427), // default in SF
             mapOptions: {
-                //center: new google.maps.LatLng(37.776098, -122.4233427), // default in SF
                 zoom: 12,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 disableDefaultUI: true,
