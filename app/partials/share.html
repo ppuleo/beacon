@@ -1,7 +1,20 @@
-<div
-    id="map-canvas"
-    ui-map="beaconMap"
-    ui-options="mapOptions"
-    ui-event="{'map-idle': 'mapReady()'}"
-    class="map-canvas">
+<div class="share-container" ng-class="{true: 'visible'}[beaconState.map.isVisible]">
+
+    <!-- Map -->
+    <div
+        id="map-canvas"
+        ui-map="beaconMap"
+        ui-options="mapOptions"
+        ui-event="{'map-idle': 'mapReady()'}"
+        class="map-canvas">
+    </div>
+
+    <!-- Name input box -->
+    <input type="text" ng-model="user.name" />
+
+    <!-- Action Button -->
+    <div class="button-container">
+        <a class="button" href="{{url.email}}">Share Location</a>
+        <!-- <a class="button" href="{{url.sms}}">Share Location SMS</a> -->
+    </div>
 </div>
