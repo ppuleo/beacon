@@ -11,20 +11,26 @@
 
     <!-- Name box -->
     <div class="name-container">
-        <input
-            type="text"
-            ng-model="user.name"
-            ng-show="!shareName"
-            ng-change="updateUrl(user.name)"
-            placeholder="Name"
-        />
 
-        <h2 ng-show="shareName">{{shareName}}</h2>
+        <div class="name">
+            <div class="recenter-button">
+                <i class="icon-map-marker"></i>
+            </div>
+            <input
+                type="text"
+                ng-model="user.name"
+                ng-show="!shareName"
+                ng-change="updateUrl(user.name)"
+                placeholder="Name"
+            />
+
+            <h2 ng-show="shareName">{{shareName}}</h2>
+        </div>
     </div>
 
     <!-- Action Button -->
     <div class="button-container">
-        <a class="button" href="{{url.email}}" ng-show="!shareName">Share Location</a>
+        <a class="button" href="{{url.email}}" ng-show="!shareName"><i class="icon-envelope"></i>Share Location</a>
         <a class="button" href="{{mapsUrl}}" ng-show="shareName">Navigate to beacon</a>
     </div>
 </div>
