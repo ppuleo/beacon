@@ -138,6 +138,12 @@ angular.module('beacon.services', [])
             body: ''
         },
 
+        platform: {
+            ios: function () {
+                return (/(iPad|iPhone|iPod)/g).test(navigator.userAgent);
+            }
+        },
+
         // Maps
         map: {
             isVisible: false,

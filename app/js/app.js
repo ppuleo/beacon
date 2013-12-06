@@ -31,8 +31,8 @@ angular.module('beacon', [
         templateUrl: 'partials/share.html',
         controller: 'ShareCtrl'
     })
-    .when('/view', {
-        templateUrl: 'partials/view.html',
+    .when('/find', {
+        templateUrl: 'partials/find.html',
         controller: 'FindCtrl'
     })
     .otherwise({

@@ -60,7 +60,7 @@ angular.module('beacon.controllers', [])
 
     /**
      * Builds SMS and email links to the supplied position
-     * @param {object} position google maps latlng object
+     * @param {object} position latlng object
      * @param {string} name The name of the person sharing location
      * @return {object} url An object containing SMS and email link strings
      */
@@ -68,7 +68,7 @@ angular.module('beacon.controllers', [])
 
         var subject = name + ' shared a location beacon with you';
         var body = name + ' is here: http://beacon.localhost';
-        body += '/#/view';
+        body += '/#/share';
         body += '?lat=' + position.latitude;
         body += '&lng=' + position.longitude;
         body += '&name=' + name;
@@ -77,6 +77,20 @@ angular.module('beacon.controllers', [])
             sms: 'sms:?body=test',
             email: 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body)
         };
+
+        return url;
+    }
+
+    /**
+     * Builds map link to the supplied position
+     * @param {object} position latlng object
+     * @param {string} name The name of the person sharing location
+     * @return {object} url An object containing maps link strings
+     */
+    function buildMapsUrl(position, name) {
+
+        var latlng = position.latitude + ',' + position.longitude;
+        var url = 'http://maps.apple.com/?q=' + latlng + '&ll=' + latlng;
 
         return url;
     }
@@ -132,15 +146,39 @@ angular.module('beacon.controllers', [])
                     // Build the action button URL
                     $scope.url = buildLocationUrl(response, 'Fred');
 
+                    // Get the shared lat/lng/name if they exist
+                    var shareLat = $scope.$location.search().lat;
+                    var shareLng = $scope.$location.search().lng;
+
+                    // If this is a shared location, show the share and the user
+                    if (shareLat && shareLng) {
+
+                        // Plot the share and center the map on the share
+                        var sharePosition = new google.maps.LatLng(shareLat, shareLng);
+
+                        // Create the shared position marker
+                        createMarker(sharePosition);
+
+                        // Center the map on the shared position
+                        centerMap(sharePosition);
+
+                        $scope.mapsUrl = buildMapsUrl({latitude: shareLat, longitude: shareLng}, name);
+
+                        if (typeof($scope.$location.search().name) === 'string') {
+                            $scope.shareName = $scope.$location.search().name;
+                        }
+                        else {
+                            $scope.shareName = ' ';
+                        }
+
+                    }
+
                     // Expose the response to scope for use by other public methods
                     beaconState.map.center = response;
 
-                    if (response.message) {
-                        console.log(response.message);
-                    }
-                    else {
-                        beaconState.map.isVisible = true;
-                    }
+                    // Show the map
+                    beaconState.map.isVisible = true;
+
                 },
 
                  // Error - handles deferred.reject

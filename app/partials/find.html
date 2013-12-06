@@ -1,0 +1,12 @@
+<div class="find-container" ng-class="{true: 'visible'}[beaconState.map.isVisible]">
+
+    <!-- Map -->
+    <div
+        id="map-canvas"
+        ui-map="beaconMap"
+        ui-options="mapOptions"
+        ui-event="{'map-idle': 'mapReady()'}"
+        class="map-canvas">
+    </div>
+
+</div>
